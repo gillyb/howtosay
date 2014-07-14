@@ -4,9 +4,11 @@ app.controller('HomeController', function($scope, $http, Dictionary) {
 		
 		var words = dictionary.Dictionary;
 		var randomNumber = Math.floor(Math.random() * words.length);
-		var randomWord = words[randomNumber].Plain;
+		var randomWord = words[randomNumber];
 
-		$scope.RandomWord = randomWord;
+		$scope.RandomWord = {};
+		$scope.RandomWord.English = randomWord.Voweled;
+		$scope.RandomWord.Hebrew = randomWord.Hebrew;
 
 	});
 });

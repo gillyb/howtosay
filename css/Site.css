@@ -1,0 +1,5 @@
+
+* { direction:rtl; }
+.main-container { margin:10px; }
+.main-container .random-word { margin-bottom:30px; }
+.main-container .random-word .word { font-size:36px; font-weight:bold; line-height:28px; margin-bottom:12px; }

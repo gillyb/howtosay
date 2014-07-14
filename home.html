@@ -1,6 +1,17 @@
 
 <div class="main-container">
 
-	<span ng-bind-template="{{RandomWord}}"></span>
+	<div class="random-word">
+		<div class="title">לועזית</div>
+		<div class="word english" ng-bind-template="{{RandomWord.English}}"></div>
+		<div class="title">עברית</div>
+		<div class="word hebrew" ng-bind-template="{{RandomWord.Hebrew}}"></div>
+	</div>
+
+	<div class="main-menu">
+		<div class="btn btn-primary btn-block">רענן</div>
+		<div class="btn btn-primary btn-block">חפש</div>
+		<div class="btn btn-primary btn-block">בחן את עצמך</div>
+	</div>
 
 </div>
