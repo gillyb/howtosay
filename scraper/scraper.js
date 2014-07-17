@@ -29,9 +29,9 @@ function getDictionaryLetter() {
 
 			fs.writeSync(fd, '{\r\n');
 
-			var EnglishVoweled = $(this).find('span').first().text();
+			var EnglishVoweled = $(this).find('span').first().text().replace(/\"/g, '\\\"');
 			var EnglishPlain = getPlainHebrew(EnglishVoweled);
-			var Hebrew = $(this).find(':nth-child(3)').text();
+			var Hebrew = $(this).find(':nth-child(3)').text().replace(/\"/g, '\\\"');
 			
 			fs.writeSync(fd, '\t\"Plain\": \"');
 			var plainBuffer = new Buffer(EnglishPlain);
@@ -46,7 +46,7 @@ function getDictionaryLetter() {
 			fs.writeSync(fd, '\t\"Hebrew\": \"');
 			var hebrewBuffer = new Buffer(Hebrew);
 			fs.writeSync(fd, hebrewBuffer, 0, hebrewBuffer.length);
-			fs.writeSync(fd, '\",\r\n');
+			fs.writeSync(fd, '\"\r\n');
 
 			fs.writeSync(fd, '},\r\n');
 		});
