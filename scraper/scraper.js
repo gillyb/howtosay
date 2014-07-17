@@ -4,32 +4,60 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 var os = require('os');
 
-var url = 'http://hebrew-academy.huji.ac.il/Milim/_layouts/AcademApps/HowToSayInHebrew/GetLetterWords.aspx?l=%D7%90&numofcol=2&tabindex=1&_=1405362164582';
+var url = 'http://hebrew-academy.huji.ac.il/Milim/_layouts/AcademApps/HowToSayInHebrew/GetLetterWords.aspx?l={{LETTER}}&numofcol=2&tabindex=1&_=1405362164582';
 var hebrewLetters = 'אבגדהוזחטיכלמנסעפצקרשת';
+var fd = fs.openSync('C:\\text.txt', 'w');
 
-request(url, function (error, response, html) {
-	if (error) {
-		console.log('Error while requesting site...');
-		process.exit(1);
-	}
+var newLine = new Buffer('\r\n');
+fs.writeSync(fd, '{\r\n\"Dictionary\":[');
 
-	var $ = cheerio.load(html);
+var i = 0;
+getDictionaryLetter();
 
-	var fd = fs.openSync('C:\\text.txt', 'w');
+function getDictionaryLetter() {
+	var u = url.replace('{{LETTER}}', hebrewLetters[i]);
+	request(u, function (error, response, html) {
+		if (error) {
+			console.log('Error while requesting site...');
+			process.exit(1);
+		}
 
-	var words = $('#MainTable').find('.divCell');
-	words.each(function() {
-		var EnglishVoweled = $(this).find('span').first().text();
-		var EnglishPlain = getPlainHebrew(EnglishVoweled);
-		var Hebrew = $(this).find(':nth-child(3)').text();
-		
-		var buffer = new Buffer(Hebrew);
-		buffer.write('\r\n');
+		var $ = cheerio.load(html);
 
-		fs.writeSync(fd, buffer, 0, buffer.length);
+		var words = $('#MainTable').find('.divCell');
+		words.each(function() {
+
+			fs.writeSync(fd, '{\r\n');
+
+			var EnglishVoweled = $(this).find('span').first().text();
+			var EnglishPlain = getPlainHebrew(EnglishVoweled);
+			var Hebrew = $(this).find(':nth-child(3)').text();
+			
+			fs.writeSync(fd, '\t\"Plain\": \"');
+			var plainBuffer = new Buffer(EnglishPlain);
+			fs.writeSync(fd, plainBuffer, 0, plainBuffer.length);
+			fs.writeSync(fd, '\",\r\n');
+
+			fs.writeSync(fd, '\t\"Voweled\": \"');
+			var voweledBuffer = new Buffer(EnglishVoweled);
+			fs.writeSync(fd, voweledBuffer, 0, voweledBuffer.length);
+			fs.writeSync(fd, '\",\r\n');
+
+			fs.writeSync(fd, '\t\"Hebrew\": \"');
+			var hebrewBuffer = new Buffer(Hebrew);
+			fs.writeSync(fd, hebrewBuffer, 0, hebrewBuffer.length);
+			fs.writeSync(fd, '\",\r\n');
+
+			fs.writeSync(fd, '},\r\n');
+		});
+
+		i++;
+		if (i < hebrewLetters.length)
+			getDictionaryLetter();
+		else
+			fs.writeSync(fd, '\r\n]\r\n}');
 	});
-
-});
+}
 
 function getPlainHebrew(str) {
 	var plainStr = '';
@@ -39,5 +67,5 @@ function getPlainHebrew(str) {
 		if (str[i] == '(' || str[i] == ')')
 			break;
 	}
-	return str.trim();
+	return plainStr.trim();
 }
