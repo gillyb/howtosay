@@ -1,5 +1,5 @@
 
-var app = angular.module('howToSayApp', ['ngRoute', 'ngSanitize', 'ngAnimate', 'ngTouch', 'DictionaryService']);
+var app = angular.module('howToSayApp', ['ngRoute', 'ngSanitize', 'ngAnimate', 'ngTouch', 'DictionaryService', 'FavoritesService']);
 
 app.factory('CacheProvider', function ($cacheFactory) {
     // we can add a cache limit here if we'll need to

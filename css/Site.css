@@ -1,9 +1,11 @@
 
 * { direction:rtl; }
 .main-container { margin-top:54px; }
-.content-container { padding:10px; }
+.content-container { padding:10px; position:relative; }
 .content-container .random-word { margin-bottom:30px; }
 .content-container .random-word .word { font-size:36px; font-weight:bold; line-height:28px; margin-bottom:12px; }
+
+.favorite { position:absolute; top:10px; left:10px;font-size:28px;color:#4cae4c; }
 
 
 /* HEADER */
