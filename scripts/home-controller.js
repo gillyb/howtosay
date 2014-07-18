@@ -1,5 +1,5 @@
 
-app.controller('HomeController', function($scope, $http, Dictionary) {
+app.controller('HomeController', function($scope, $http, Dictionary, $location) {
 	Dictionary.then(function(dictionary) {
 		
 		var words = dictionary.Dictionary;
@@ -11,4 +11,9 @@ app.controller('HomeController', function($scope, $http, Dictionary) {
 		$scope.RandomWord.Hebrew = randomWord.Hebrew;
 
 	});
+
+	$scope.refresh = function() {
+		$location.reload();
+	}
+
 });
