@@ -4,7 +4,7 @@
 <div class="content-container">
 
 	<div class="favorite" ng-click="toggleFavorite()">
-		<i class="glyphicon glyphicon-star-empty"></i>
+		<i class="glyphicon" ng-class="{'glyphicon-star-empty':Favorited==false, 'glyphicon-star':Favorited==true}"></i>
 	</div>
 
 	<div class="random-word">
