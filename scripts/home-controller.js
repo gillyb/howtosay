@@ -32,6 +32,7 @@ app.controller('HomeController', function($scope, $http, Dictionary, $location, 
 		$scope.RandomWord = {};
 		$scope.RandomWord.English = randomWord.Voweled;
 		$scope.RandomWord.Hebrew = randomWord.Hebrew;
+		$scope.Favorited = Favorites.has(randomWord.Plain);
 
 		_chosenWord = randomWord.Plain;
 	}

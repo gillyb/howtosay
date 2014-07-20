@@ -18,6 +18,11 @@ favoritesService.factory('Favorites', ['CacheProvider', function () {
         return JSON.parse(favorites);
     };
     
+    var _has = function(word) {
+        var favorites = _get();
+        return favorites.hasOwnProperty(word);
+    };
+
     var _set = function(word) {
         var favorites = _get();
         if (favorites.hasOwnProperty(word))
@@ -36,7 +41,7 @@ favoritesService.factory('Favorites', ['CacheProvider', function () {
 
     return {
         set: _set,
-        get: _get,
+        has: _has,
         remove: _remove
     };
 
