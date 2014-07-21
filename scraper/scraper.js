@@ -6,6 +6,7 @@ var os = require('os');
 
 var url = 'http://hebrew-academy.huji.ac.il/Milim/_layouts/AcademApps/HowToSayInHebrew/GetLetterWords.aspx?l={{LETTER}}&numofcol=2&tabindex=1&_=1405362164582';
 var hebrewLetters = 'אבגדהוזחטיכלמנסעפצקרשת';
+var finalLetters = 'ףךץןם';
 var fd = fs.openSync('C:\\text.txt', 'w');
 
 var newLine = new Buffer('\r\n');
@@ -32,7 +33,7 @@ function getDictionaryLetter() {
 			var EnglishVoweled = $(this).find('span').first().text().replace(/\"/g, '\\\"');
 			var EnglishPlain = getPlainHebrew(EnglishVoweled);
 			var Hebrew = $(this).find(':nth-child(3)').text().replace(/\"/g, '\\\"');
-			var Definition = $(this).find(':last-child').text().replace(/\"/g, '\\\"');
+			var Definition = $(this).find(':last-child').text().replace(/\"/g, '\\\"').replace(/(?:\r\n|\r|\n)/g, '\\n');
 			
 			fs.writeSync(fd, '\t\"Plain\": \"');
 			var plainBuffer = new Buffer(EnglishPlain);
@@ -52,7 +53,7 @@ function getDictionaryLetter() {
 			fs.writeSync(fd, '\t\"Definition\": \"');
 			var definitionBuffer = new Buffer(Definition);
 			fs.writeSync(fd, definitionBuffer, 0, definitionBuffer.length);
-			fs.writeSync(fd, '\",\r\n');
+			fs.writeSync(fd, '\"\r\n');
 
 			fs.writeSync(fd, '},\r\n');
 		});
@@ -68,7 +69,7 @@ function getDictionaryLetter() {
 function getPlainHebrew(str) {
 	var plainStr = '';
 	for (var i=0; i<str.length; i++) {
-		if (hebrewLetters.indexOf(str[i]) >= 0 || str[i] == ' ' || str[i] == '(' || str[i] == ')')
+		if (hebrewLetters.indexOf(str[i]) >= 0 || finalLetters.indexOf(str[i]) >= 0 || str[i] == ' ' || str[i] == '(' || str[i] == ')')
 			plainStr += str[i];
 	}
 	return plainStr.trim();
