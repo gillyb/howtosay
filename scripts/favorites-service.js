@@ -40,6 +40,7 @@ favoritesService.factory('Favorites', ['CacheProvider', function () {
     };
 
     return {
+        get: _get,
         set: _set,
         has: _has,
         remove: _remove

@@ -1,0 +1,14 @@
+
+<app-header></app-header>
+
+<div class="content-container">
+
+	<div class="favorites-list">
+		<div class="favorite-word" ng-repeat="favorite in Favorites" ng-click="selectWord(favorite)">
+			<span ng-bind-template="{{favorite}}"></span>
+		</div>
+	</div>
+
+	<app-menu></app-menu>
+
+</div>

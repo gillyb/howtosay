@@ -11,6 +11,10 @@ app.config(['$routeProvider', function($routeProvider) {
         .when('/', {
             templateUrl: 'home.html',
             controller: 'HomeController'
+        })
+        .when('/favorites', {
+            templateUrl: 'favorites.html',
+            controller: 'FavoritesController'
         });
 }]);
 

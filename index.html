@@ -7,7 +7,6 @@
         <link href="css/Site.css" rel="stylesheet" />
 
         <script src="phonegap.js"></script>
-        <script src="scripts/inmobi.js"></script>
         
         <!-- 3rd party frameworks -->
         <script src="scripts/jquery-2.1.1.min.js"></script>
@@ -26,6 +25,7 @@
         <script src="scripts/directives/app-header.js"></script>
         <script src="scripts/directives/app-menu.js"></script>
         <script src="scripts/home-controller.js"></script>
+        <script src="scripts/favorites-controller.js"></script>
 
         <title>How To Say ?</title>
         
@@ -63,7 +63,7 @@
 
         function onDeviceReady() {
             console.log('device ready');
-            $.getScript("inmobi.js", function() {
+            $.getScript("scripts/inmobi.js", function() {
                 showAds();
             });
         }
