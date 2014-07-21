@@ -17,4 +17,8 @@
         Gilly Barr 
     </author>
 
+    <preference name="Orientation" value="portrait" />
+
+    <preference name="permissions" value="none" />
+
 </widget>

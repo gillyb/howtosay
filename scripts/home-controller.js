@@ -8,6 +8,8 @@ app.controller('HomeController', function($scope, $http, Dictionary, $location, 
 
 		$scope.refreshWord = function() {
 			selectRandomWord(dictionary);
+			if ($('.definition .content').length)
+				$('.definition .content').css('display','none');
 		}
 
 		$scope.toggleFavorite = function() {
@@ -33,26 +35,32 @@ app.controller('HomeController', function($scope, $http, Dictionary, $location, 
 				}
 			}
 
-			$scope.RandomWord = {};
-			$scope.RandomWord.English = selectedWord.Voweled;
-			$scope.RandomWord.Hebrew = selectedWord.Hebrew;
-			$scope.Favorited = Favorites.has(selectedWord.Plain);
+			displayWord(selectedWord);
+			if ($('.definition .content').length)
+				$('.definition .content').css('display','none');
+		};
 
-			_chosenWord = selectedWord.Plain;
+		$scope.showDefinition = function() {
+			$('.definition .content').slideDown();
 		};
 	});
+
+	function displayWord(wordObj) {
+		$scope.RandomWord = {};
+		$scope.RandomWord.English = wordObj.Voweled;
+		$scope.RandomWord.Hebrew = wordObj.Hebrew;
+		$scope.Favorited = Favorites.has(wordObj.Plain);
+		$scope.RandomWord.Definition = wordObj.Definition;
+
+		_chosenWord = wordObj.Plain;
+	}
 
 	function selectRandomWord(dictionary) {
 		var words = dictionary.Dictionary;
 		var randomNumber = Math.floor(Math.random() * words.length);
 		var randomWord = words[randomNumber];
 
-		$scope.RandomWord = {};
-		$scope.RandomWord.English = randomWord.Voweled;
-		$scope.RandomWord.Hebrew = randomWord.Hebrew;
-		$scope.Favorited = Favorites.has(randomWord.Plain);
-
-		_chosenWord = randomWord.Plain;
+		displayWord(randomWord);
 	}
 
 });

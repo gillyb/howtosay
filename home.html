@@ -12,6 +12,10 @@
 		<div class="word english" ng-bind-template="{{RandomWord.English}}"></div>
 		<div class="title">עברית</div>
 		<div class="word hebrew" ng-bind-template="{{RandomWord.Hebrew}}"></div>
+		<div class="definition" ng-if="RandomWord.Definition.length > 0">
+			<div class="link" ng-click="showDefinition()">הגדרה >></div>
+			<div class="content" style="display:none;" ng-bind-template="{{RandomWord.Definition}}"></div>
+		</div>
 	</div>
 
 	<app-menu></app-menu>
