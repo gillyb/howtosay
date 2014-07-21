@@ -7,6 +7,12 @@ app.directive('appHeader', function($location, $http, Dictionary) {
             Dictionary.then(function(dictionary) {
                 $('#search-word').keyup(function() {
                     var query = $(this).val();
+                    if (query.trim().length == 0) {
+                        scope.Suggestions = [];
+                        scope.$apply();
+                        return;
+                    }
+
                     var filteredDictionary = $.grep(dictionary.Dictionary, function(word) {
                         return word.Plain.indexOf(query) == 0;
                     });
@@ -16,6 +22,12 @@ app.directive('appHeader', function($location, $http, Dictionary) {
                     scope.Suggestions = filteredWords;
                     scope.$apply();
                 });
+
+                scope.selectSuggestion = function(word) {
+                    $('#search-word').val(word);
+                    scope.selectWord(word);
+                    scope.Suggestions = [];
+                };
             });
         }
     };

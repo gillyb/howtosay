@@ -13,7 +13,7 @@
 </div>
 
 <div class="auto-suggestions-container" ng-if="Suggestions.length > 0">
-	<div class="suggestion" ng-repeat="suggestion in Suggestions">
+	<div class="suggestion" ng-repeat="suggestion in Suggestions" ng-click="selectSuggestion(suggestion)">
 		<span class="content" ng-bind-template="{{suggestion}}"></span>
 	</div>
 </div>

@@ -22,6 +22,24 @@ app.controller('HomeController', function($scope, $http, Dictionary, $location, 
 				Favorites.remove(_chosenWord);
 			}
 		}
+
+		$scope.selectWord = function(word) {
+			var words = dictionary.Dictionary;
+			var selectedWord;
+			for (var i=0; i<words.length; i++) {
+				if (words[i].Voweled == word) {
+					selectedWord = words[i];
+					break;
+				}
+			}
+
+			$scope.RandomWord = {};
+			$scope.RandomWord.English = selectedWord.Voweled;
+			$scope.RandomWord.Hebrew = selectedWord.Hebrew;
+			$scope.Favorited = Favorites.has(selectedWord.Plain);
+
+			_chosenWord = selectedWord.Plain;
+		};
 	});
 
 	function selectRandomWord(dictionary) {
