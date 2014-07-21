@@ -1,11 +1,10 @@
 
-app.controller('HomeController', function($scope, $http, Dictionary, $location, Favorites) {
+app.controller('HomeController', function($scope, $http, Dictionary, $location, Favorites, $routeParams) {
 
 	var _chosenWord = '';
 
 	Dictionary.then(function(dictionary) {
-		selectRandomWord(dictionary);
-
+		
 		$scope.refreshWord = function() {
 			selectRandomWord(dictionary);
 			if ($('.definition .content').length)
@@ -29,7 +28,7 @@ app.controller('HomeController', function($scope, $http, Dictionary, $location, 
 			var words = dictionary.Dictionary;
 			var selectedWord;
 			for (var i=0; i<words.length; i++) {
-				if (words[i].Voweled == word) {
+				if (words[i].Voweled == word || words[i].Plain == word) {
 					selectedWord = words[i];
 					break;
 				}
@@ -43,6 +42,12 @@ app.controller('HomeController', function($scope, $http, Dictionary, $location, 
 		$scope.showDefinition = function() {
 			$('.definition .content').slideDown();
 		};
+
+		var selectedWord = $routeParams.w;
+		if (selectedWord)
+			$scope.selectWord(decodeURIComponent(selectedWord));
+		else
+			selectRandomWord(dictionary);
 	});
 
 	function displayWord(wordObj) {
