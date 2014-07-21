@@ -5,6 +5,7 @@
 .content-container .random-word { margin-bottom:30px; }
 .content-container .random-word .word { font-size:36px; font-weight:bold; line-height:28px; margin-bottom:12px; }
 .content-container .definition .link { color:#428bca; cursor:pointer; }
+.btn-block .glyphicon.pull-right { margin-right:10px; }
 
 .favorite { position:absolute; top:10px; left:10px;font-size:28px;color:#4cae4c; }
 
@@ -18,6 +19,9 @@
 	-moz-box-shadow:2px 3px 3px #777;
 }
 .auto-suggestions-container .suggestion { border-bottom:solid 1px #ccc; padding: 8px 0; font-size:20px; }
+
+.inmobi-ad { display:inline-block;bottom:0;position:fixed; }
+
 
 /* HEADER */
 .header-container { position:fixed; top:0; width:100%; height:54px; padding:10px 10px 0 10px; background-color:#eee; border-bottom:solid 1px #ccc; }
