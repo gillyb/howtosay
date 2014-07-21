@@ -32,6 +32,7 @@ function getDictionaryLetter() {
 			var EnglishVoweled = $(this).find('span').first().text().replace(/\"/g, '\\\"');
 			var EnglishPlain = getPlainHebrew(EnglishVoweled);
 			var Hebrew = $(this).find(':nth-child(3)').text().replace(/\"/g, '\\\"');
+			var Definition = $(this).find(':last-child').text().replace(/\"/g, '\\\"');
 			
 			fs.writeSync(fd, '\t\"Plain\": \"');
 			var plainBuffer = new Buffer(EnglishPlain);
@@ -46,7 +47,12 @@ function getDictionaryLetter() {
 			fs.writeSync(fd, '\t\"Hebrew\": \"');
 			var hebrewBuffer = new Buffer(Hebrew);
 			fs.writeSync(fd, hebrewBuffer, 0, hebrewBuffer.length);
-			fs.writeSync(fd, '\"\r\n');
+			fs.writeSync(fd, '\",\r\n');
+
+			fs.writeSync(fd, '\t\"Definition\": \"');
+			var definitionBuffer = new Buffer(Definition);
+			fs.writeSync(fd, definitionBuffer, 0, definitionBuffer.length);
+			fs.writeSync(fd, '\",\r\n');
 
 			fs.writeSync(fd, '},\r\n');
 		});
@@ -62,10 +68,8 @@ function getDictionaryLetter() {
 function getPlainHebrew(str) {
 	var plainStr = '';
 	for (var i=0; i<str.length; i++) {
-		if (hebrewLetters.indexOf(str[i]) >= 0 || str[i] == ' ')
+		if (hebrewLetters.indexOf(str[i]) >= 0 || str[i] == ' ' || str[i] == '(' || str[i] == ')')
 			plainStr += str[i];
-		if (str[i] == '(' || str[i] == ')')
-			break;
 	}
 	return plainStr.trim();
 }
