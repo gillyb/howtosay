@@ -6,6 +6,7 @@ app.controller('HomeController', function($scope, $http, Dictionary, $location, 
 	Dictionary.then(function(dictionary) {
 		
 		$scope.refreshWord = function() {
+			$scope.unmaskWord();
 			selectRandomWord(dictionary);
 			if ($('.definition .content').length)
 				$('.definition .content').css('display','none');
@@ -37,6 +38,19 @@ app.controller('HomeController', function($scope, $http, Dictionary, $location, 
 			displayWord(selectedWord);
 			if ($('.definition .content').length)
 				$('.definition .content').css('display','none');
+		};
+
+		$scope.trivia = function() {
+			$('.word.hebrew').addClass('hidden');
+			$('.word.hebrew.masked').removeClass('hidden');
+			selectRandomWord(dictionary);
+			if ($('.definition .content').length)
+				$('.definition .content').css('display','none');
+		};
+
+		$scope.unmaskWord = function() {
+			$('.word.hebrew').removeClass('hidden');
+			$('.word.hebrew.masked').addClass('hidden');
 		};
 
 		$scope.showDefinition = function() {
