@@ -11,6 +11,8 @@
 .favorite-word { padding-bottom:6px;margin-bottom:6px;border-bottom:solid 1px #ccc;font-size:20px; }
 .favorites-list { height:300px; overflow-y:scroll; margin-bottom:10px;overflow-x:hidden; }
 
+.word.hebrew.masked .small { font-size:16px; font-weight:normal;}
+
 .auto-suggestions-container {
 	position:absolute; top:0; right:0; left:0;width:90%;
 	margin:10px auto;border-radius:10px; padding:10px;
@@ -30,3 +32,4 @@
 .header-container .search-input-wrapper { margin-left:30px; margin-right:45px; }
 .header-container #search-word { width:100%; }
 .header-container .glyphicon-search { font-size:22px; line-height:30px; }
+.header-container .logo { display:inline-block; height:34px; width:34px; background-image:url('/logo.png'); }
