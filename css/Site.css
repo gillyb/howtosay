@@ -24,12 +24,9 @@
 }
 .auto-suggestions-container .suggestion { border-bottom:solid 1px #ccc; padding: 8px 0; font-size:20px;margin-right:40px; }
 
-.inmobi-ad { display:inline-block;bottom:0;position:fixed; }
-
-
 /* HEADER */
 .header-container { position:fixed; top:0; width:100%; height:54px; padding:10px 10px 0 10px; background-color:#eee; border-bottom:solid 1px #ccc; }
 .header-container .search-input-wrapper { margin-left:30px; margin-right:45px; }
 .header-container #search-word { width:100%; }
 .header-container .glyphicon-search { font-size:22px; line-height:30px; }
-.header-container .logo { display:inline-block; height:34px; width:34px; background-image:url('/icon.png'); }
+.header-container .logo { display:inline-block; height:34px; width:34px; }

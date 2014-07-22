@@ -40,37 +40,5 @@
 
         </div>
 
-        <div id="inmobi-ad"></div>
-
     </body>
-
-    <script type="text/javascript" language="javascript">
-        var inmobi_conf = {
-            siteid : "f12c3240adf44a6a84addafe08874eab",
-            slot: 15,
-            test: true,
-            manual: true,
-            autoRefresh: 60,
-            targetWindow : "_blank",
-            onError : function(code) {
-                if(code == "nfr") {
-                    console.log("Error getting the ads!");
-                }
-            }
-        };
-
-        document.addEventListener("deviceready", onDeviceReady, false);
-
-        function onDeviceReady() {
-            console.log('device ready');
-            $.getScript("scripts/inmobi.js", function() {
-                showAds();
-            });
-        }
-
-        function showAds() {
-            var adsElement = document.getElementById('inmobi-ad'); 
-            _inmobi.getNewAd(adsElement);
-        }
-    </script>
 </html>
