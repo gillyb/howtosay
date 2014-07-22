@@ -9,7 +9,7 @@
 
 .favorite { position:absolute; top:10px; left:10px;font-size:28px;color:#4cae4c; }
 .favorite-word { padding-bottom:6px;margin-bottom:6px;border-bottom:solid 1px #ccc;font-size:20px; }
-.favorites-list { height:300px; overflow-y:scroll; margin-bottom:10px; }
+.favorites-list { height:300px; overflow-y:scroll; margin-bottom:10px;overflow-x:hidden; }
 
 .auto-suggestions-container {
 	position:absolute; top:0; right:0; left:0;width:90%;
@@ -20,7 +20,7 @@
 	-webkit-box-shadow:2px 3px 3px #777;
 	-moz-box-shadow:2px 3px 3px #777;
 }
-.auto-suggestions-container .suggestion { border-bottom:solid 1px #ccc; padding: 8px 0; font-size:20px; }
+.auto-suggestions-container .suggestion { border-bottom:solid 1px #ccc; padding: 8px 0; font-size:20px;margin-right:40px; }
 
 .inmobi-ad { display:inline-block;bottom:0;position:fixed; }
 
